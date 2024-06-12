@@ -20,12 +20,12 @@ class ProjectController extends Controller
     }
     public function show($slug)
     {
-        $projects = Project::where('slug', $slug)->with('technologies', 'type')->first();
-        if ($projects) {
+        $project = Project::where('slug', $slug)->with('technologies', 'type')->first();
+        if ($project) {
             return response()->json([
                 'status' => 'success',
                 'message' => 'Ok',
-                'results' => $projects
+                'results' => $project
             ], 200);
         } else {
             return response()->json([
