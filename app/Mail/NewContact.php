@@ -27,8 +27,8 @@ public $lead;
     public function envelope(): Envelope
     {
         return new Envelope(
-            replyTo: $this->lead->email,
             subject: 'New Contact',
+            replyTo: $this->lead->email,
         );
     }
 
