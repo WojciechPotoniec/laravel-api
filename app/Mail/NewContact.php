@@ -38,7 +38,7 @@ public $lead;
     public function content(): Content
     {
         return new Content(
-            view: 'email.new-contact-mail',
+            view: 'emails.new-contact-mail',
         );
     }
 

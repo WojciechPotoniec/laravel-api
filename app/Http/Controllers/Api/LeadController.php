@@ -29,7 +29,7 @@ class LeadController extends Controller
             ]);
         }
         $lead = new Lead();
-        $lead->Lead::create($data);
+        $lead = Lead::create($data);
 
         Mail::to('info@boolpress.com')->send(new NewContact($lead));
 
