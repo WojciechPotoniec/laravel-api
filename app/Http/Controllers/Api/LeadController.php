@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 
 use App\Models\Lead;
 
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 use App\Mail\NewContact;
 
 class LeadController extends Controller
@@ -21,6 +21,7 @@ class LeadController extends Controller
             'email' => 'required|email',
             'message' => 'required',
         ]);
+        
         if ($validator->fails()) {
             return response()->json([
                 'success' => false,
@@ -28,8 +29,13 @@ class LeadController extends Controller
             ]);
         }
         $lead = new Lead();
-        $lead->fill($data);
-        $lead->save();
+        $lead->Lead::create($data);
+
         Mail::to('info@boolpress.com')->send(new NewContact($lead));
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Your message has been sent',
+        ], 200);
     }
 }
